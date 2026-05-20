@@ -2,24 +2,34 @@
   "widgets": [
     {
       "type": "metric",
-      "x": 0, "y": 0, "w": 12, "h": 6,
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 6,
       "properties": {
         "metrics": [
-          [ "AWS/ApplicationELB", "RequestCount", "LoadBalancer", "app/prod-alb/1234567890abcdef", { "stat": "Sum" } ],
+          [ "AWS/ApplicationELB", "RequestCount", "LoadBalancer", "app/prod-alb/bf9f73ef65a6108f", { "stat": "Sum" } ],
           [ ".", "HTTPCode_Target_5XX_Count", ".", ".", { "stat": "Sum", "color": "#d13212" } ]
         ],
-        "period": 60, "region": "us-east-1", "title": "ALB Traffic & Errors"
+        "period": 60,
+        "region": "us-east-1",
+        "title": "ALB Traffic & Errors"
       }
     },
     {
       "type": "metric",
-      "x": 12, "y": 0, "w": 12, "h": 6,
+      "x": 12,
+      "y": 0,
+      "w": 12,
+      "h": 6,
       "properties": {
         "metrics": [
           [ "AWS/ECS", "CPUUtilization", "ClusterName", "production-backend-cluster", "ServiceName", "production-core-service", { "stat": "Average" } ],
-          [ " . ", "MemoryUtilization", " . ", " . ", " . ", " . ", { "stat": "Average" } ]
+          [ ".", "MemoryUtilization", ".", ".", ".", ".", { "stat": "Average" } ]
         ],
-        "period": 60, "region": "us-east-1", "title": "ECS Fargate Resource Health"
+        "period": 60,
+        "region": "us-east-1",
+        "title": "ECS Fargate Resource Health"
       }
     },
     {
@@ -31,7 +41,9 @@
           [ ".", "ReadLatency", ".", ".", { "stat": "Average", "yAxis": "right" } ],
           [ ".", "WriteLatency", ".", ".", { "stat": "Average", "yAxis": "right" } ]
         ],
-        "period": 60, "region": "us-east-1", "title": "RDS Engine Load & Latency Metrics"
+        "period": 60,
+        "region": "us-east-1",
+        "title": "RDS Engine Load & Latency Metrics"
       }
     }
   ]
