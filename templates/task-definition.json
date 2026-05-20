@@ -1,0 +1,101 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:093796422314:task-definition/production-core-task:2",
+    "containerDefinitions": [
+        {
+            "name": "app-container",
+            "image": "public.ecr.aws/docker/library/httpd:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "production-app-tier-fargate",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "systemControls": []
+        },
+        {
+            "name": "xray-daemon",
+            "image": "public.ecr.aws/xray/aws-xray-daemon:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 2000,
+                    "hostPort": 2000,
+                    "protocol": "udp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "production-app-tier-fargate",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "xray"
+                }
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "production-core-task",
+    "taskRoleArn": "arn:aws:iam::093796422314:role/ecs-execution-role-observability",
+    "executionRoleArn": "arn:aws:iam::093796422314:role/ecs-execution-role-observability",
+    "networkMode": "awsvpc",
+    "revision": 2,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "MANAGED_INSTANCES",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "registeredAt": "2026-05-20T15:02:48.584Z",
+    "registeredBy": "arn:aws:iam::093796422314:root",
+    "tags": []
+}
